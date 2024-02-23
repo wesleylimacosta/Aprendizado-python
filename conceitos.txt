@@ -1,0 +1,203 @@
+- A identação no python é importante para determinar onde um bloco de comando inicia e onde ele termina;
+Exemplo
+def sacar(valor):
+    saldo = 100;
+    if saldo >= valor:
+        saldo -= valor
+        print("Valor sacado");
+        print("Saldo atual: ", saldo);
+    else:
+        print("Saldo insuficiente");
+        print("Saldo atual: ", saldo);
+        
+sacar(100);
+
+def depositar(valor):
+    saldo = 100;
+    
+    saldo += valor;
+    print("=======================================================")
+    print("Valor depositado");
+    print("Saldo atual: ", saldo);
+
+depositar(200);
+
+--------------------------------------------------------------------------
+Condicionais:
+    
+MAIOR_IDADE = 18;
+
+idade = int(input("Digite sua idade: "));
+    
+if idade >= MAIOR_IDADE:
+    print("Você é maior de idade");
+else:
+    print("Você é menor de idade");
+--------------------------------------------------------------------------
+Laços de repetição:
+    
+lista = ["1","2","3","4","5","6","7","8","9","10"];
+
+def percorrerLista():
+    for i in lista:
+        print(i);
+        
+percorrerLista();
+--------------------------------------------------------------------------
+Range function
+- A função range() em Python é usada para gerar uma sequência de números. Ele retorna um objeto de sequência que produz uma série de inteiros consecutivos. A sintaxe geral é: range(start, stop, step)
+- start: O número inteiro que especifica em que posição começar. O padrão é 0.
+- stop: O número inteiro que especifica em que posição terminar.
+- step: O número inteiro que especifica o incremento. O padrão é 1.
+
+for i in range(0,51,5):
+    print(i);
+--------------------------------------------------------------------------
+Manipulando strings em Python:
+curso = "           Python        "
+print(curso.strip()) # Remove espaços em branco tanto da esquerda quanto da direita
+# resultado = "Python"
+
+print(curso.lstrip()) # Remove espaços em branco da esquerda
+# resultado = "Python        "
+
+print(curso.rstrip()) # Remove espaços em branco da direita
+#resultado = "           Python"
+
+print(curso.find("thon")) # Retorna a posição da primeira ocorrência da palavra
+# resultado = 4
+
+print(curso.replace("Python", "Java")) # Substitui a palavra Python por Java,
+# resultado = "Java"
+
+print("Python" in curso) # Retorna True se a palavra Python estiver na string
+# resultado = True
+
+print("Python" not in curso) # Retorna True se a palavra Python não estiver na string
+# resultado = False
+
+print(len(curso)) # Retorna o tamanho da string
+# resultado = 23
+
+print(curso.lower()) # Converte a string para minúsculas
+# resultado = "python"
+
+print(curso.upper()) # Converte a string para maiúsculas
+# resultado = "PYTHON"
+
+print(curso.capitalize()) # Converte a primeira letra da string para maiúscula
+# resultado = "Python"
+
+print(curso.title()) # Converte a primeira letra de cada palavra para maiúscula
+# resultado = "Python"
+
+print(curso.center(20, "-")) # Centraliza a string em um campo de 20 caracteres preenchido com hífens
+# resultado = "------Python-------"
+
+print(curso.ljust(20, "-")) # Alinha a string à esquerda em um campo de 20 caracteres preenchido com hífens
+# resultado = "Python------------"
+
+print(curso.rjust(20, "-")) # Alinha a string à direita em um campo de 20 caracteres preenchido com hífens
+# resultado = "------------Python"
+
+print(curso.split()) # Divide a string em uma lista
+# resultado = ["Python"]
+
+print(curso.split("t")) # Divide a string em uma lista a partir da letra t
+# resultado = ["Py", "hon"]
+
+print(".".join(curso)) # Junta todos os elementos da lista em uma string
+# resultado = "P.y.t.h.o.n"
+
+print(curso[::-1]) # Inverte a string                                                          
+# resultado = "nohtyP"
+
+print("".join(reversed(curso))) # Inverte a string
+# resultado = "nohtyP"
+
+print(curso.count("t")) # Conta quantas vezes a letra t aparece na string
+# resultado = 1
+
+print(curso.startswith("P")) # Retorna True se a string começa com a letra P
+# resultado = True
+
+print(curso.endswith("n")) # Retorna True se a string termina com a letra n
+# resultado = True
+
+print(curso.isalnum()) # Retorna True se a string só contém números e letras
+# resultado = False
+
+print(curso.isalpha()) # Retorna True se a string só contém letras
+# resultado = True
+
+print(curso.isnumeric()) # Retorna True se a string só contém números
+# resultado = False
+
+print(curso.isspace()) # Retorna True se a string só contém espaços em branco
+# resultado = False
+
+print(curso.istitle()) # Retorna True se a string segue as regras de um título
+# resultado = True
+
+print(curso.isupper()) # Retorna True se a string está em maiúsculas
+# resultado = False
+
+print(curso.islower()) # Retorna True se a string está em minúsculas
+# resultado = False
+
+print(curso.swapcase()) # Inverte a string
+# resultado = "pYTHON"
+
+print(curso.zfill(20)) # Preenche a string com zeros à esquerda
+# resultado = "0000000000000Python"
+--------------------------------------------------------------------------
+Interpolando
+Exemplo 1
+nome = "Wesley"
+idade = 20
+print(f"O nome é {nome} e a idade é {idade}")
+# resultado = "O nome é Wesley e a idade é 20"
+
+Exemplo 2
+nome = "Wesley"
+idade = 20
+print("O nome é {} e a idade é {}".format(nome, idade))
+# resultado = "O nome é Wesley e a idade é 20"
+
+Exemplo 3
+nome = "Wesley"
+idade = 20
+print("O nome é {0} e a idade é {1}".format(nome, idade))
+# resultado = "O nome é Wesley e a idade é 20"
+
+Exemplo 4
+
+nome = "Wesley"
+idade = 20
+print("O nome é {nome} e a idade é {idade}".format(nome=nome, idade=idade))
+# resultado = "O nome é Wesley e a idade é 20"
+
+Exemplo 5
+
+nome = "Wesley"
+idade = 20
+print("O nome é %s e a idade é %d" % (nome, idade))
+# resultado = "O nome é Wesley e a idade é 20"
+--------------------------------------------------------------------------
+Fatiamento de string
+curso = "Python"
+print(curso[0]) # Retorna o caractere na posição 0
+# resultado = "P"
+--------------------------------------------------------------------------
+String multiplas linhas
+curso = '''Programação
+em
+Python'''
+print(curso)
+# resultado = "Programação
+# em
+# Python"
+--------------------------------------------------------------------------
+
+
+
