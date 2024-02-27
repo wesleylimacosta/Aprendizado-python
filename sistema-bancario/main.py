@@ -9,6 +9,23 @@ class Cliente:
     def adicionar_conta(self, conta):
         self.contas.append(conta)
 
+    def depositar(self, indice_conta, valor):
+        if 0 <= indice_conta < len(self.contas):
+            self.contas[indice_conta].depositar(valor)
+        else:
+            print("Conta não encontrada.")
+
+    def sacar(self, indice_conta, valor):
+        if 0 <= indice_conta < len(self.contas):
+            self.contas[indice_conta].sacar(valor)
+        else:
+            print("Conta não encontrada.")
+
+    def exibir_extrato(self, indice_conta):
+        if 0 <= indice_conta < len(self.contas):
+            self.contas[indice_conta].exibir_extrato()
+        else:
+            print("Conta não encontrada.")
 
 class ContaBancaria:
     def __init__(self, numero_conta, agencia, tipo_conta="corrente"):
@@ -22,12 +39,14 @@ class ContaBancaria:
             print("Valor inválido para depósito!")
             return
         self.saldo += valor
+        print(f"\nDepósito de R${valor:.2f} efetuado com sucesso!")
 
     def sacar(self, valor):
         if valor <= 0 or valor > self.saldo:
             print("Valor inválido para saque!")
             return
         self.saldo -= valor
+        print(f"\nSaque de R${valor:.2f} efetuado com sucesso!")
 
     def exibir_extrato(self):
         print("\n------------------Extrato------------------")
@@ -35,39 +54,6 @@ class ContaBancaria:
         print(f"Agência: {self.agencia}")
         print(f"Tipo da conta: {self.tipo_conta}")
         print(f"Saldo: R${self.saldo:.2f}")
-
-
-def cadastrar_cliente():
-    nome = input("Nome: ")
-    senha = input("Senha: ")
-    cpf = input("CPF: ")
-    idade = int(input("Idade: "))
-    return Cliente(nome, senha, cpf, idade)
-
-
-def cadastrar_conta(cliente):
-    numero_conta = int(input("Número da conta: "))
-    agencia = int(input("Agência: "))
-    tipo_conta = input("Tipo da conta: ")
-    conta = ContaBancaria(numero_conta, agencia, tipo_conta)
-    cliente.adicionar_conta(conta)
-    print("\nConta cadastrada com sucesso!")
-
-
-def depositar(conta):
-    valor = float(input("Valor do depósito: "))
-    conta.depositar(valor)
-    print(f"\nDepósito de R${valor:.2f} efetuado com sucesso!")
-
-
-def sacar(conta):
-    valor = float(input("Valor do saque: "))
-    conta.sacar(valor)
-    print(f"\nSaque de R${valor:.2f} efetuado com sucesso!")
-
-
-def exibir_extrato(conta):
-    conta.exibir_extrato()
 
 
 clientes = []
@@ -87,7 +73,11 @@ while True:
     opcao = input("Opção: ")
 
     if opcao == "1":
-        cliente = cadastrar_cliente()
+        nome = input("Nome: ")
+        senha = input("Senha: ")
+        cpf = input("CPF: ")
+        idade = int(input("Idade: "))
+        cliente = Cliente(nome, senha, cpf, idade)
         clientes.append(cliente)
         print("\nCliente cadastrado com sucesso!")
 
@@ -96,52 +86,50 @@ while True:
             print("\nÉ necessário cadastrar um cliente primeiro!")
             continue
         cliente_index = int(input("Índice do cliente: "))
-        if cliente_index < 0 or cliente_index >= len(clientes):
+        if 0 <= cliente_index < len(clientes):
+            numero_conta = int(input("Número da conta: "))
+            agencia = int(input("Agência: "))
+            tipo_conta = input("Tipo da conta: ")
+            conta = ContaBancaria(numero_conta, agencia, tipo_conta)
+            clientes[cliente_index].adicionar_conta(conta)
+            print("\nConta cadastrada com sucesso!")
+        else:
             print("\nÍndice de cliente inválido!")
-            continue
-        cadastrar_conta(clientes[cliente_index])
 
     elif opcao == "3":
         if not clientes:
             print("\nÉ necessário cadastrar um cliente primeiro!")
             continue
         cliente_index = int(input("Índice do cliente: "))
-        if cliente_index < 0 or cliente_index >= len(clientes):
+        if 0 <= cliente_index < len(clientes):
+            conta_index = int(input("Índice da conta: "))
+            valor = float(input("Valor do depósito: "))
+            clientes[cliente_index].depositar(conta_index, valor)
+        else:
             print("\nÍndice de cliente inválido!")
-            continue
-        conta_index = int(input("Índice da conta: "))
-        if conta_index < 0 or conta_index >= len(clientes[cliente_index].contas):
-            print("\nÍndice de conta inválido!")
-            continue
-        depositar(clientes[cliente_index].contas[conta_index])
 
     elif opcao == "4":
         if not clientes:
             print("\nÉ necessário cadastrar um cliente primeiro!")
             continue
         cliente_index = int(input("Índice do cliente: "))
-        if cliente_index < 0 or cliente_index >= len(clientes):
+        if 0 <= cliente_index < len(clientes):
+            conta_index = int(input("Índice da conta: "))
+            valor = float(input("Valor do saque: "))
+            clientes[cliente_index].sacar(conta_index, valor)
+        else:
             print("\nÍndice de cliente inválido!")
-            continue
-        conta_index = int(input("Índice da conta: "))
-        if conta_index < 0 or conta_index >= len(clientes[cliente_index].contas):
-            print("\nÍndice de conta inválido!")
-            continue
-        sacar(clientes[cliente_index].contas[conta_index])
 
     elif opcao == "5":
         if not clientes:
             print("\nÉ necessário cadastrar um cliente primeiro!")
             continue
         cliente_index = int(input("Índice do cliente: "))
-        if cliente_index < 0 or cliente_index >= len(clientes):
+        if 0 <= cliente_index < len(clientes):
+            conta_index = int(input("Índice da conta: "))
+            clientes[cliente_index].exibir_extrato(conta_index)
+        else:
             print("\nÍndice de cliente inválido!")
-            continue
-        conta_index = int(input("Índice da conta: "))
-        if conta_index < 0 or conta_index >= len(clientes[cliente_index].contas):
-            print("\nÍndice de conta inválido!")
-            continue
-        exibir_extrato(clientes[cliente_index].contas[conta_index])
 
     elif opcao == "6":
         print("\nSaindo...")
