@@ -192,7 +192,7 @@
 # String multiplas linhas
 # curso = '''Programação
 # em
-# Python'''
+# Python
 # print(curso)
 # # resultado = "Programação
 # # em
@@ -207,6 +207,7 @@
 # lista.index("2") # retorna 1 pela posição do 2 na lista
 # lista.pop(); # Ele vai tirar o ultimo elemento da pilha mas tambem conseguimos passar um indice
 # lista.remove() # Outra forma de remover o elemento da lista
+# Ele vai tirar o primeito elemento da fila -> lista.pop(0)
 # lista.reverse() # Coloca a lista ao contrario, 123 vira 321
 # lista.sort() # Ordenação padrão
 # lista.sort(reverse=True) # 
